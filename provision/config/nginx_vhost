@@ -1,6 +1,6 @@
 server {
     server_name localhost;
-    root /home/vagrant/projects/blog/web;
+    root /home/vagrant/projects/symfony2-tutorial/web;
 
     location / {
         # try to serve file directly, fallback to app.php
