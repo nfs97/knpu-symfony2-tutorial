@@ -43,6 +43,6 @@ server {
         internal;
     }
 
-    error_log /var/log/nginx/blog_error.log;
-    access_log /var/log/nginx/blog_access.log;
+    error_log /var/log/nginx/symfony2-tutorial_error.log;
+    access_log /var/log/nginx/symfony2-tutorial_access.log;
 }
