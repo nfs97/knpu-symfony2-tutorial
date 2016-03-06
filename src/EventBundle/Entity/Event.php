@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Event
  *
- * @ORM\Table(name="yoda_event")
+ * @ORM\Table(name="knpu")
  * @ORM\Entity(repositoryClass="EventBundle\Repository\EventRepository")
  */
 class Event
