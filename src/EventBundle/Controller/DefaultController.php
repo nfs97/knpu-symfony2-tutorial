@@ -12,20 +12,20 @@ class DefaultController extends Controller
 {
     public function indexAction($name, $count)
     {
-        /*$event = new Event();
+        $event = new Event();
         $event->setName('Darth surprise bithday party and the guest is');
         $event->setLocation("DeathStar");
         $event->setTime(new \DateTime('2000-01-01'));
-        $event->setDetails('Ha! Darth hates surprises!!! But give him presents');*/
+        $event->setDetails('Ha! Darth hates surprises!!! But give him presents');
 
         $em = $this->getDoctrine()->getManager();
 
-        /*$em->persist($event);
-        $em->flush();*/
+        $em->persist($event);
+        $em->flush();
 
-        $repo = $em->getRepository('EventBundle:Event');
+        /*$repo = $em->getRepository('EventBundle:Event');
 
-        $event =  $repo->find(11);
+        $event =  $repo->find(11);*/
 
         return $this->render(
             'EventBundle:Default:index.html.twig',
