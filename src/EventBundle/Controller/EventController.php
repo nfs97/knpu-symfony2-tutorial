@@ -22,10 +22,10 @@ class EventController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $events = $em->getRepository('EventBundle:Event')->findAll();
+        $entities = $em->getRepository('EventBundle:Event')->findAll();
 
-        return $this->render('event/index.html.twig', array(
-            'events' => $events,
+        return $this->render('EventBundle:Event:index.html.twig', array(
+            'entities' => $entities,
         ));
     }
 
@@ -47,7 +47,7 @@ class EventController extends Controller
             return $this->redirectToRoute('event_show', array('id' => $event->getId()));
         }
 
-        return $this->render('event/new.html.twig', array(
+        return $this->render('EventBundle:Event:new.html.twig', array(
             'event' => $event,
             'form' => $form->createView(),
         ));
@@ -57,12 +57,12 @@ class EventController extends Controller
      * Finds and displays a Event entity.
      *
      */
-    public function showAction(Event $event)
+    public function showAction(Event $entity)
     {
-        $deleteForm = $this->createDeleteForm($event);
+        $deleteForm = $this->createDeleteForm($entity);
 
-        return $this->render('event/show.html.twig', array(
-            'event' => $event,
+        return $this->render('EventBundle:Event:show.html.twig', array(
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -71,22 +71,22 @@ class EventController extends Controller
      * Displays a form to edit an existing Event entity.
      *
      */
-    public function editAction(Request $request, Event $event)
+    public function editAction(Request $request, Event $entity)
     {
-        $deleteForm = $this->createDeleteForm($event);
-        $editForm = $this->createForm('EventBundle\Form\EventType', $event);
+        $deleteForm = $this->createDeleteForm($entity);
+        $editForm = $this->createForm('EventBundle\Form\EventType', $entity);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($event);
+            $em->persist($entity);
             $em->flush();
 
-            return $this->redirectToRoute('event_edit', array('id' => $event->getId()));
+            return $this->redirectToRoute('event_edit', array('id' => $entity->getId()));
         }
 
-        return $this->render('event/edit.html.twig', array(
-            'event' => $event,
+        return $this->render('EventBundle:Event:edit.html.twig', array(
+            'entity' => $entity,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

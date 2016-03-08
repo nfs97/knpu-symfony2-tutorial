@@ -4,10 +4,10 @@
 
     <section class="event-show">
         <header id="menu">
-            <a class="link" href="{{ path('event') }}">&larr; back to the events list</a>
+            <a class="link" href="{{ path('event_index') }}">&larr; back to the events list</a>
         </header>
 
-        <article>
+        <article><h1>{{ entity.location | url_encode }}</h1>
             <header class="map-container">
                 <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ entity.location | url_encode }}&markers=color:red%7Ccolor:red%7C{{ entity.location | url_encode }}&zoom=14&size=300x300&maptype=roadmap&sensor=false" />
             </header>
@@ -15,6 +15,9 @@
                 <h1>
                     {{ entity.name }}
                     <a class="button" href="{{ path('event_edit', {'id': entity.id}) }}">edit</a>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                    {{ form_end(delete_form) }}
                 </h1>
 
                 <dl>
