@@ -38,6 +38,11 @@
                         {{ form_errors(edit_form.details) }}
                         {{ form_widget(edit_form.details) }}
                     </dd>
+                    <dd>
+                        {{ form_errors(delete_form) }}
+                        {{ form_widget(delete_form) }}
+                        <input type="submit" value="Delete">
+                    </dd>
                 </dl>
 
                 {# the closing </form> tag #}
