@@ -28,10 +28,10 @@
     background:#fff;
 
     -webkit-border-radius:150px;
-    -moz-border-radius:150px;
-    border-radius:150px;
+       -moz-border-radius:150px;
+            border-radius:150px;
     -webkit-box-shadow:0px 0px 5px #ccc;
-    box-shadow:0px 0px 5px #ccc;
+            box-shadow:0px 0px 5px #ccc;
 }
 
 .event-show article .map-container img {
@@ -39,8 +39,8 @@
     height:300px;
 
     -webkit-border-radius:150px;
-    -moz-border-radius:150px;
-    border-radius:150px;
+       -moz-border-radius:150px;
+            border-radius:150px;
 }
 
 .event-show article section {
@@ -54,11 +54,11 @@
     position:relative;
 
     -webkit-border-radius:5px;
-    -moz-border-radius:5px;
-    border-radius:5px;
+           -moz-border-radius:5px;
+                border-radius:5px;
 
     -webkit-box-shadow:0px 0px 2px #ccc;
-    box-shadow:0px 0px 2px #ccc;
+            box-shadow:0px 0px 2px #ccc;
 }
 
 .event-show article section:after {
@@ -89,11 +89,11 @@
     background:#fff;
 
     -webkit-transform:rotate(-45deg);
-    -moz-transform:rotate(-45deg);
-    transform:rotate(-45deg);
+       -moz-transform:rotate(-45deg);
+            transform:rotate(-45deg);
 
     -webkit-box-shadow:0px 0px 2px #ccc;
-    box-shadow:0px 0px 2px #ccc;
+            box-shadow:0px 0px 2px #ccc;
 }
 
 .event-show article section {
@@ -172,7 +172,7 @@
     width:450px;
     border:1px solid #ccc;
     -webkit-box-shadow:0px 0px 5px #ccc;
-    box-shadow:0px 0px 5px #ccc;
+            box-shadow:0px 0px 5px #ccc;
     font-size:14px;
     padding:5px;
 }
