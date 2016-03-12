@@ -19,7 +19,7 @@ class LoadEvents implements FixtureInterface
 
         $event2 = new Event();
         $event2->setName('Luke Skywalker ');
-        $event2->setLocation("yavin");
+        $event2->setLocation("Yavin");
         $event2->setTime(new \DateTime('2005-07-04'));
         $event2->setDetails('Get there faster than I can do it');
         $manager->persist($event2);
