@@ -111,7 +111,7 @@ class EventController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('event_index');
+        return $this->redirectToRoute('event');
     }
 
     /**
