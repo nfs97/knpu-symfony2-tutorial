@@ -9,6 +9,8 @@ use EventBundle\Entity\Event;
 use EventBundle\Form\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Event controller.
@@ -39,6 +41,9 @@ class EventController extends Controller
      */
     public function newAction(Request $request)
     {
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $event = new Event();
         $form = $this->createForm('EventBundle\Form\EventType', $event);
         $form->handleRequest($request);
