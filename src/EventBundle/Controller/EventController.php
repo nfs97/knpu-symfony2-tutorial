@@ -41,8 +41,7 @@ class EventController extends Controller
      */
     public function newAction(Request $request)
     {
-
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+        $this->enforceUserSecurity();
 
         $event = new Event();
         $form = $this->createForm('EventBundle\Form\EventType', $event);
@@ -82,6 +81,8 @@ class EventController extends Controller
      */
     public function editAction(Request $request, Event $entity)
     {
+        $this->enforceUserSecurity();
+
         $deleteForm = $this->createDeleteForm($entity);
         $editForm = $this->createForm('EventBundle\Form\EventType', $entity);
         $editForm->handleRequest($request);
@@ -107,6 +108,8 @@ class EventController extends Controller
      */
     public function deleteAction(Request $request, Event $event)
     {
+        $this->enforceUserSecurity();
+
         $form = $this->createDeleteForm($event);
         $form->handleRequest($request);
 
@@ -133,5 +136,10 @@ class EventController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    private function enforceUserSecurity()
+    {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'Unable to access this page!');
     }
 }
