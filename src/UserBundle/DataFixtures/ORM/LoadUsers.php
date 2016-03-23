@@ -28,29 +28,26 @@ class LoadUsers implements FixtureInterface, ContainerAwareInterface
         $user->setUsername('darth');
         $user->setEmail('darth@darth.com');
         $user->setIsActive(true);
-
-        $plainPassword = 'darthpass';
-        $encoder = $this->container->get('security.password_encoder');
-        $encoded = $encoder->encodePassword($user, $plainPassword);
-
-        $user->setPassword($encoded);
-
+        $user->setPassword($this->encodePassword($user,'darthpass'));
         $manager->persist($user);
+
+        $admin = new Users();
+        $admin->setUsername('wayne');
+        $admin->setEmail('wayne@darth.com');
+        $admin->setIsActive(true);
+        $admin->setPassword($this->encodePassword($admin,'waynepass'));
+        $admin->setRoles(array('ROLE_ADMIN'));
+        $manager->persist($admin);
 
         $manager->flush();
     }
 
     private function encodePassword(Users $user, $plainPassword)
     {
+        $encoder = $this->container->get('security.password_encoder');
+        $encoded = $encoder->encodePassword($user, $plainPassword);
 
-        $defaultEncoder = new MessageDigestPasswordEncoder('md5', true, 1);
-        $encoders = array(
-            'UserBundle\\Entity\\Users'                       => $defaultEncoder,
-        );
-        $encoderFactory = new EncoderFactory($encoders);
-        $encoder = $encoderFactory->getEncoder($user);
-
-        return $encoder->encodePassword($plainPassword, $user->getSalt());
+        return $encoded;
 
     }
 

@@ -3,7 +3,7 @@
 namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * Users
@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Table(name="yoda_user")
  * @ORM\Entity(repositoryClass="UserBundle\Repository\UsersRepository")
  */
-class Users implements UserInterface, \Serializable
+class Users implements AdvancedUserInterface, \Serializable
 {
     /**
      * @var int
@@ -50,6 +50,13 @@ class Users implements UserInterface, \Serializable
      */
     private $isActive;
 
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="roles", type="json_array")
+     */
+    private $roles= array();
 
     /**
      * Get id
@@ -166,7 +173,16 @@ class Users implements UserInterface, \Serializable
 
     public function getRoles()
     {
-        return array('ROLE_USER');
+        $roles =  $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+        return $this;
     }
 
     public function serialize()
@@ -194,5 +210,31 @@ class Users implements UserInterface, \Serializable
     public function eraseCredentials()
     {
     }
+
+    public function isAccountNonExpired()
+    {
+        // TODO: Implement isAccountNonExpired() method.
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        // TODO: Implement isAccountNonLocked() method.
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        // TODO: Implement isCredentialsNonExpired() method.
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        // TODO: Implement isEnabled() method.
+        return $this->getIsActive();
+    }
+
+
 }
 
