@@ -23,6 +23,6 @@ class RegisterController extends Controller
             ->add('password', PasswordType::class)
             ->getForm();
 
-        return array('form' => $form);
+        return array('form' => $form->createView());
     }
 }
