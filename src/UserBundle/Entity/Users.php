@@ -37,6 +37,13 @@ class Users implements AdvancedUserInterface, \Serializable
     private $password;
 
     /**
+     * Just store plain password temporarily!
+     *
+     * @var string
+     */
+    private $plainPassword;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, unique=true)
@@ -64,7 +71,7 @@ class Users implements AdvancedUserInterface, \Serializable
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid(null, true));
     }
-    
+
     /**
      * Get id
      *
@@ -216,6 +223,7 @@ class Users implements AdvancedUserInterface, \Serializable
 
     public function eraseCredentials()
     {
+        $this->setPlainPassword(null);
     }
 
     public function isAccountNonExpired()
@@ -240,6 +248,22 @@ class Users implements AdvancedUserInterface, \Serializable
     {
         // TODO: Implement isEnabled() method.
         return $this->getIsActive();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param mixed $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
     }
 
 

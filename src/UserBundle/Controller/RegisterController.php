@@ -30,7 +30,7 @@ class RegisterController extends Controller
         ))
             ->add('username', TextType::class)
             ->add('email', EmailType::class)
-            ->add('password', RepeatedType::class, array(
+            ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class
             ))
             ->getForm();
@@ -41,7 +41,7 @@ class RegisterController extends Controller
 
 
 
-            $user->setPassword($this->encodePassword($user, $user->getPassword()));
+            $user->setPassword($this->encodePassword($user, $user->getPlainPassword()));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
