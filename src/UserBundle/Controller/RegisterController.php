@@ -6,12 +6,9 @@ namespace UserBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\Users;
+use UserBundle\Form\RegisterFormType;
 
 class RegisterController extends Controller
 {
@@ -25,15 +22,7 @@ class RegisterController extends Controller
         $user = new Users();
         $user->setUsername('Leia');
 
-        $form = $this->createFormBuilder($user, array(
-            'data_class' => 'UserBundle\Entity\Users',
-        ))
-            ->add('username', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('plainPassword', RepeatedType::class, array(
-                'type' => PasswordType::class
-            ))
-            ->getForm();
+        $form = $this->createForm(RegisterFormType::class, $user);
 
         $form->handleRequest($request);
         if($form->isValid()){
