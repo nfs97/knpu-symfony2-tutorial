@@ -6,3 +6,5 @@ user_controller:
     resource: "@UserBundle/Controller"
     prefix:   /
     type:     annotation
+
+
