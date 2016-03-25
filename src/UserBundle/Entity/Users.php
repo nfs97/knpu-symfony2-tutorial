@@ -4,12 +4,16 @@ namespace UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Users
  *
  * @ORM\Table(name="yoda_user")
  * @ORM\Entity(repositoryClass="UserBundle\Repository\UsersRepository")
+ * @UniqueEntity(fields="email", message="That email is taken!")
+ * @UniqueEntity(fields="username", message="That username is taken")
  */
 class Users implements AdvancedUserInterface, \Serializable
 {
@@ -25,6 +29,8 @@ class Users implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      *
+     * @Assert\NotBlank(message="Yo! Add something here")
+     * @Assert\Length(min="3", minMessage="Minimum 3 characters")
      * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     private $username;
@@ -40,12 +46,15 @@ class Users implements AdvancedUserInterface, \Serializable
      * Just store plain password temporarily!
      *
      * @var string
+     *
      */
     private $plainPassword;
 
     /**
      * @var string
      *
+     * @Assert\NotBlank()
+     * @Assert\Email()
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
