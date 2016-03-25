@@ -34,8 +34,12 @@ class RegisterController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
-
             $em->flush();
+
+            $this->addFlash(
+                'success',
+                'Welcome to Death Star! Have a great day!'
+            );
 
             $url = $this->generateUrl('event');
 
