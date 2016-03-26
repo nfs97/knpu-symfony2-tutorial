@@ -87,6 +87,8 @@ class EventController extends Controller
     {
         $this->enforceUserSecurity();
 
+        $this->enforceOwnerSecurity($entity);
+
         $deleteForm = $this->createDeleteForm($entity);
         $editForm = $this->createForm('EventBundle\Form\EventType', $entity);
         $editForm->handleRequest($request);
@@ -119,6 +121,7 @@ class EventController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $this->enforceOwnerSecurity($event);
             $em->remove($event);
             $em->flush();
         }
@@ -145,5 +148,14 @@ class EventController extends Controller
     private function enforceUserSecurity()
     {
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'Unable to access this page!');
+    }
+
+    private function enforceOwnerSecurity(Event $event)
+    {
+        $user=$this->getUser();
+
+        if ($user != $event->getOwner()){
+            throw new AccessDeniedException('You don\'t own this');
+        }
     }
 }

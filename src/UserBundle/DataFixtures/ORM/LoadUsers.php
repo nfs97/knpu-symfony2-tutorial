@@ -8,9 +8,10 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
 
-class LoadUsers implements FixtureInterface, ContainerAwareInterface
+class LoadUsers implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
     /**
      * @var ContainerInterface
@@ -56,4 +57,10 @@ class LoadUsers implements FixtureInterface, ContainerAwareInterface
         // TODO: Implement setContainer() method.
         $this->container = $container;
     }
+
+    public function getOrder()
+    {
+        return 10;
+    }
+
 }

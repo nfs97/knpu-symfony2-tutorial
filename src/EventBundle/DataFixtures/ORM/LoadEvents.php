@@ -4,11 +4,15 @@ namespace EventBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use EventBundle\Entity\Event;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class LoadEvents implements FixtureInterface
+class LoadEvents implements FixtureInterface, OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
+        $wayne=$manager->getRepository('UserBundle:Users')
+            ->findOneByUsernameOrEmail('wayne');
+
         $event1 = new Event();
         $event1->setName('Darth surprise bithday party and the guest is');
         $event1->setLocation("DeathStar");
@@ -24,6 +28,14 @@ class LoadEvents implements FixtureInterface
         $event2->setDetails('Get there faster than I can do it');
         $manager->persist($event2);
 
+        $event1->setOwner($wayne);
+        $event2->setOwner($wayne);
+
         $manager->flush();
+    }
+
+    public function getOrder()
+    {
+        return 20;
     }
 }

@@ -14,7 +14,9 @@
             <section>
                 <h1>
                     {{ entity.name }}
-                    <a class="button" href="{{ path('event_edit', {'id': entity.id}) }}">edit</a>
+                    {% if app.user == entity.owner %}
+                        <a class="button" href="{{ path('event_edit', {'id': entity.id}) }}">edit</a>
+                    {% endif %}
                     {{ form_start(delete_form) }}
                     <input type="submit" value="Delete">
                     {{ form_end(delete_form) }}
