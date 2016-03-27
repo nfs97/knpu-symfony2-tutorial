@@ -3,7 +3,6 @@
 namespace EventBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use EventBundle\Entity\Event;
 use EventBundle\Form\EventType;
@@ -150,12 +149,5 @@ class EventController extends Controller
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'Unable to access this page!');
     }
 
-    private function enforceOwnerSecurity(Event $event)
-    {
-        $user=$this->getUser();
-
-        if ($user != $event->getOwner()){
-            throw new AccessDeniedException('You don\'t own this');
-        }
-    }
+   
 }
