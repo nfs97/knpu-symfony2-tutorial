@@ -53,6 +53,12 @@ echo "Installing composer packages..."
 cd $ROOT_DIR
 composer install > /dev/null
 
+#may not work
+echo "Installing PHPUnit..."
+wget https://phar.phpunit.de/phpunit-4.8.19.phar
+echo vagrant | chmod +x phpunit-4.8.19.phar
+echo vargant | sudo mv phpunit-4.8.19.phar /usr/local/bin/phpunit
+
 echo "Configuring symfony"
 cp $ROOT_DIR/app/config/parameters.yml.dist $ROOT_DIR/app/config/parameters.yml
 

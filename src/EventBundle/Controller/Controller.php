@@ -9,6 +9,7 @@ use EventBundle\Entity\Event;
 
 class Controller extends BaseController
 {
+    
     public function enforceOwnerSecurity(Event $event)
     {
         $user=$this->getUser();
