@@ -52,7 +52,10 @@ class Event
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Users")
+     * @ORM\ManyToOne(
+     *     targetEntity="UserBundle\Entity\Users",
+     *      inversedBy="events"
+     * )
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $owner;

@@ -2,10 +2,12 @@
 
 namespace UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * Users
@@ -74,11 +76,17 @@ class Users implements AdvancedUserInterface, \Serializable
      */
     private $roles= array();
 
+    /**
+     * @ORM\OneToMany(targetEntity="EventBundle\Entity\Event", mappedBy="owner")
+     */
+    private $events;
+
     public function __construct()
     {
         $this->isActive = true;
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid(null, true));
+        $this->events = new ArrayCollection();
     }
 
     /**
@@ -275,6 +283,13 @@ class Users implements AdvancedUserInterface, \Serializable
         $this->plainPassword = $plainPassword;
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+    
 }
 
