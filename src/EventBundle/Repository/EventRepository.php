@@ -11,5 +11,13 @@ use Proxies\__CG__\UserBundle\Entity\Users;
  */
 class EventRepository extends \Doctrine\ORM\EntityRepository
 {
-    
+    public function getUpcomingEvents()
+    {
+        return $this->createQueryBuilder('e')
+            ->addOrderBy('e.time', 'ASC')
+            ->andWhere('e.time > :now')
+            ->setParameter('now', new \DateTime())
+            ->getQuery()
+            ->execute();
+    }
 }
