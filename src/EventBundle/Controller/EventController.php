@@ -68,11 +68,12 @@ class EventController extends Controller
      * Finds and displays a Event entity.
      *
      */
-    public function showAction(Event $entity)
+    public function showAction(Event $entity, $slug)
     {
         $deleteForm = $this->createDeleteForm($entity);
 
         return $this->render('EventBundle:Event:show.html.twig', array(
+            'slug' => $slug,
             'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         ));
