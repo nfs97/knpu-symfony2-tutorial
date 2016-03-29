@@ -2,6 +2,7 @@
 
 namespace EventBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use UserBundle\Entity\Users;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -80,6 +81,15 @@ class Event
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\Users")
+     */
+    private $attendees;
+
+    public function __construct()
+    {
+        $this->attendees = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -233,6 +243,19 @@ class Event
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getAttendees()
+    {
+        return $this->attendees;
+    }
+
+    public function hasAttendee(Users $user)
+    {
+        return $this->getAttendees()->contains($user);
     }
 }
 

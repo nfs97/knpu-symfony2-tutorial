@@ -290,6 +290,10 @@ class Users implements AdvancedUserInterface, \Serializable
     {
         return $this->events;
     }
-    
+
+    public function __toString()
+    {
+        return (string) $this->getUsername();
+    }
 }
 

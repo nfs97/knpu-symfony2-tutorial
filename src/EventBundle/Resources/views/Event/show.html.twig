@@ -37,9 +37,24 @@
 
                     <dt>who:</dt>
                     <dd>
+                        {{ entity.attendees|length }} attending!
+
                         <ul class="users">
-                            <li>nobody yet!</li>
+                            {% for attendee in entity.attendees %}
+                                {{ attendee }}
+                            {% else %}
+                            <li>We're cool! RSVP!</li>
+                            {% endfor %}
                         </ul>
+                        {% if entity.hasAttendee(app.user) %}
+                            <a href="{{ path('event_unattend', {id: entity.id}) }}" class="btn btn-warning btn-xs">
+                                Sure, I'm leaving!
+                            </a>
+                        {% else %}
+                            <a href="{{ path('event_attend', {id: entity.id}) }}" class="btn btn-success btn-xs">
+                                Sure, I'm going!
+                            </a>
+                        {% endif %}
                     </dd>
                 </dl>
             </section>
