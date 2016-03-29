@@ -4,6 +4,8 @@ namespace EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use UserBundle\Entity\Users;
+use Gedmo\Mapping\Annotation as Gedmo;
+
 
 /**
  * Event
@@ -59,6 +61,12 @@ class Event
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $owner;
+
+    /**
+     * @ORM\Column(name="slug", unique=true)
+     * @Gedmo\Slug(fields={"name"}, updatable=false)
+     */
+    private $slug;
 
 
     /**
@@ -181,6 +189,22 @@ class Event
     public function setOwner(Users $owner)
     {
         $this->owner = $owner;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }
 

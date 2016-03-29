@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new EventBundle\EventBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new \UserBundle\UserBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
