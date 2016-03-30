@@ -25,11 +25,15 @@ event_delete:
     methods:  DELETE
 
 event_attend:
-    path:     /{id}/attend
-    defaults: { _controller: "EventBundle:Event:attend" }
+    path:     /{id}/attend.{format}
+    defaults: { _controller: "EventBundle:Event:attend", format: html }
     methods:  GET
+    requirements:
+          format: json
 
 event_unattend:
-    path:     /{id}/unattend
-    defaults: { _controller: "EventBundle:Event:unattend" }
+    path:     /{id}/unattend.{format}
+    defaults: { _controller: "EventBundle:Event:unattend", format: html }
     methods:  GET
+    requirements:
+              format: json
