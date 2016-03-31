@@ -4,14 +4,17 @@
 namespace EventBundle\Reporting;
 
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Routing\Router;
 
 class EventReportManager
 {
     private $em;
+    private $router;
 
-    public function __construct(EntityManager $em)
+    public function __construct(EntityManager $em, Router $router)
     {
         $this->em = $em;
+        $this->router = $router;
     }
 
     public function getRecentlyUpdatedReport()
@@ -24,7 +27,12 @@ class EventReportManager
             $data = array(
                 $event->getId(),
                 $event->getName(),
-                $event->getTime()->format('Y-m-d H:i:s')
+                $event->getTime()->format('Y-m-d H:i:s'),
+                $this->router->generate(
+                    'event_delete',
+                    array('id' => $event->getId()),
+                    true
+                )
             );
 
             $rows[] = implode(', ', $data);
