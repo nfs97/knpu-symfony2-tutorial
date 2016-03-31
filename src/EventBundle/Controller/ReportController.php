@@ -4,6 +4,7 @@
 namespace EventBundle\Controller;
 
 
+use EventBundle\Reporting\EventReportManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,20 +17,9 @@ class ReportController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $events = $em->getRepository('EventBundle:Event')
-            ->getRecentlyUpdatedEvents();
+        $eventReportManager = new EventReportManager($em);
 
-        $rows = array();
-        foreach ($events as $event){
-            $data = array(
-              $event->getId(),
-              $event->getName(),
-              $event->getTime()->format('Y-m-d H:i:s')
-            );
-
-            $rows[] = implode(', ', $data);
-        }
-        $content = implode("\n", $rows);
+        $content = $eventReportManager->getRecentlyUpdatedReport();
 
         $response = new Response($content);
         $response->headers->set('Content-Type', 'text/csv');
