@@ -47,11 +47,13 @@
                             {% endfor %}
                         </ul>
                         {% if entity.hasAttendee(app.user) %}
-                            <a href="{{ path('event_unattend', {id: entity.id}) }}" class="btn btn-warning btn-xs">
+                            <a href="{{ path('event_unattend', {id: entity.id}) }}"
+                               class="btn btn-warning btn-xs js-attend-toggle">
                                 Sure, I'm leaving!
                             </a>
                         {% else %}
-                            <a href="{{ path('event_attend', {id: entity.id}) }}" class="btn btn-success btn-xs">
+                            <a href="{{ path('event_attend', {id: entity.id}) }}"
+                               class="btn btn-success btn-xs js-attend-toggle">
                                 Sure, I'm going!
                             </a>
                         {% endif %}
@@ -60,4 +62,30 @@
             </section>
         </article>
     </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{#    <script>
+        $(document).ready(function() {
+            $('.js-attend-toggle').on('click', function(e) {
+                // prevents the browser from "following" the link
+                e.preventDefault();
+
+                var $anchor = $(this);
+                var url = $(this).attr('href');
+
+                $.post(url, null, function(data) {
+                    if (data.attending) {
+                        var message = 'See you there!';
+                    } else {
+                        var message = 'We\'ll miss you!';
+                    }
+
+                    $anchor.after('<span class="label label-default">&#10004; '+message+'</span>');
+                    $anchor.hide();
+                });
+            });
+        });
+    </script>#}
 {% endblock %}
