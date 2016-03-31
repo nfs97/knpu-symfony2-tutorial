@@ -2,6 +2,7 @@
 
 namespace EventBundle\Repository;
 use Doctrine\ORM\EntityRepository;
+use EventBundle\Entity\Event;
 
 /**
  * EventRepository
@@ -20,6 +21,18 @@ class EventRepository extends EntityRepository
             $qb->setMaxResults($max);
         }
         return $qb
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * @return Event[]
+     */
+    public function getRecentlyUpdatedEvents()
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.createdAt > :since')
+            ->setParameter('since', new \DateTime('24 hours ago'))
             ->getQuery()
             ->execute();
     }
