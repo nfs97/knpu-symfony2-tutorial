@@ -1,0 +1,31 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: ubuntu
+ * Date: 3/31/16
+ * Time: 11:49 PM
+ */
+
+namespace EventBundle\Twig;
+
+use EventBundle\Util\DateUtil;
+
+class EventExtension extends \Twig_Extension
+{
+    public function getName()
+    {
+        return 'event';
+    }
+
+    public function getFilters()
+    {
+        return array(
+            new \Twig_SimpleFilter('ago', array($this, 'calculateAgo')),
+        );
+    }
+
+    public function calculateAgo(\DateTime $dt)
+    {
+        return DateUtil::ago($dt);
+    }
+}
