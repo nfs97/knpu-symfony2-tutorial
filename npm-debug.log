@@ -1,0 +1,103 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/nodejs',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'uglifycss',
+1 verbose cli   '--prefix',
+1 verbose cli   'app/Resources' ]
+2 info using npm@1.3.10
+3 info using node@v0.10.25
+4 warn package.json @ No repository field.
+5 verbose readDependencies using package.json deps
+6 verbose cache add [ 'uglifycss', null ]
+7 verbose cache add name=undefined spec="uglifycss" args=["uglifycss",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'uglifycss',
+8 verbose parsed url   path: 'uglifycss',
+8 verbose parsed url   href: 'uglifycss' }
+9 silly lockFile c9bd009c-uglifycss uglifycss
+10 verbose lock uglifycss /home/vagrant/.npm/c9bd009c-uglifycss.lock
+11 silly lockFile c9bd009c-uglifycss uglifycss
+12 silly lockFile c9bd009c-uglifycss uglifycss
+13 verbose addNamed [ 'uglifycss', '' ]
+14 verbose addNamed [ null, '*' ]
+15 silly lockFile 6d9a3280-uglifycss uglifycss@
+16 verbose lock uglifycss@ /home/vagrant/.npm/6d9a3280-uglifycss.lock
+17 silly addNameRange { name: 'uglifycss', range: '*', hasData: false }
+18 verbose url raw uglifycss
+19 verbose url resolving [ 'https://registry.npmjs.org/', './uglifycss' ]
+20 verbose url resolved https://registry.npmjs.org/uglifycss
+21 info trying registry request attempt 1 at 16:06:27
+22 verbose etag "5KIHXDCQ21XZMBO4HPKDADA68"
+23 http GET https://registry.npmjs.org/uglifycss
+24 http 304 https://registry.npmjs.org/uglifycss
+25 silly registry.get cb [ 304,
+25 silly registry.get   { date: 'Sun, 03 Apr 2016 16:06:28 GMT',
+25 silly registry.get     via: '1.1 varnish',
+25 silly registry.get     'cache-control': 'max-age=300',
+25 silly registry.get     etag: '"5KIHXDCQ21XZMBO4HPKDADA68"',
+25 silly registry.get     age: '0',
+25 silly registry.get     connection: 'keep-alive',
+25 silly registry.get     'x-served-by': 'cache-fra1230-FRA',
+25 silly registry.get     'x-cache': 'HIT',
+25 silly registry.get     'x-cache-hits': '1',
+25 silly registry.get     'x-timer': 'S1459699588.036075,VS0,VE424',
+25 silly registry.get     vary: 'Accept' } ]
+26 verbose etag uglifycss from cache
+27 silly addNameRange number 2 { name: 'uglifycss', range: '*', hasData: true }
+28 silly addNameRange versions [ 'uglifycss',
+28 silly addNameRange   [ '0.0.3',
+28 silly addNameRange     '0.0.4',
+28 silly addNameRange     '0.0.5',
+28 silly addNameRange     '0.0.7',
+28 silly addNameRange     '0.0.8',
+28 silly addNameRange     '0.0.9',
+28 silly addNameRange     '0.0.10',
+28 silly addNameRange     '0.0.11',
+28 silly addNameRange     '0.0.12',
+28 silly addNameRange     '0.0.13',
+28 silly addNameRange     '0.0.14',
+28 silly addNameRange     '0.0.15',
+28 silly addNameRange     '0.0.16',
+28 silly addNameRange     '0.0.17',
+28 silly addNameRange     '0.0.18',
+28 silly addNameRange     '0.0.19',
+28 silly addNameRange     '0.0.20' ] ]
+29 verbose addNamed [ 'uglifycss', '0.0.20' ]
+30 verbose addNamed [ '0.0.20', '0.0.20' ]
+31 silly lockFile 5ef3385f-uglifycss-0-0-20 uglifycss@0.0.20
+32 verbose lock uglifycss@0.0.20 /home/vagrant/.npm/5ef3385f-uglifycss-0-0-20.lock
+33 silly lockFile b16fd153-g-uglifycss-uglifycss-0-0-20-tgz https://registry.npmjs.org/uglifycss/-/uglifycss-0.0.20.tgz
+34 verbose lock https://registry.npmjs.org/uglifycss/-/uglifycss-0.0.20.tgz /home/vagrant/.npm/b16fd153-g-uglifycss-uglifycss-0-0-20-tgz.lock
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/uglifycss/-/uglifycss-0.0.20.tgz',
+35 verbose addRemoteTarball   '0f953c3cf989f9ff7447cba24f9999687c9a5910' ]
+36 silly lockFile b16fd153-g-uglifycss-uglifycss-0-0-20-tgz https://registry.npmjs.org/uglifycss/-/uglifycss-0.0.20.tgz
+37 silly lockFile b16fd153-g-uglifycss-uglifycss-0-0-20-tgz https://registry.npmjs.org/uglifycss/-/uglifycss-0.0.20.tgz
+38 silly lockFile 5ef3385f-uglifycss-0-0-20 uglifycss@0.0.20
+39 silly lockFile 5ef3385f-uglifycss-0-0-20 uglifycss@0.0.20
+40 silly lockFile 6d9a3280-uglifycss uglifycss@
+41 silly lockFile 6d9a3280-uglifycss uglifycss@
+42 error Error: EACCES, mkdir '/home/vagrant/tmp/npm-9281-xHgbIDHy'
+42 error  { [Error: EACCES, mkdir '/home/vagrant/tmp/npm-9281-xHgbIDHy']
+42 error   errno: 3,
+42 error   code: 'EACCES',
+42 error   path: '/home/vagrant/tmp/npm-9281-xHgbIDHy' }
+43 error Please try running this command again as root/Administrator.
+44 error System Linux 3.13.0-79-generic
+45 error command "/usr/bin/nodejs" "/usr/bin/npm" "install" "uglifycss" "--prefix" "app/Resources"
+46 error cwd /home/vagrant/projects/symfony2-tutorial
+47 error node -v v0.10.25
+48 error npm -v 1.3.10
+49 error path /home/vagrant/tmp/npm-9281-xHgbIDHy
+50 error code EACCES
+51 error errno 3
+52 error stack Error: EACCES, mkdir '/home/vagrant/tmp/npm-9281-xHgbIDHy'
+53 verbose exit [ 3, true ]
