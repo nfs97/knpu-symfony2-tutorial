@@ -27,13 +27,13 @@ event_delete:
 event_attend:
     path:     /{id}/attend.{format}
     defaults: { _controller: "EventBundle:Event:attend", format: html }
-    methods:  GET
+    methods:  [GET, POST]
     requirements:
           format: json
 
 event_unattend:
     path:     /{id}/unattend.{format}
     defaults: { _controller: "EventBundle:Event:unattend", format: html }
-    methods:  GET
+    methods:  [GET, POST]
     requirements:
               format: json

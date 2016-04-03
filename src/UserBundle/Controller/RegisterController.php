@@ -41,7 +41,7 @@ class RegisterController extends Controller
                 'Welcome to Death Star! Have a great day!'
             );
 
-            $url = $this->generateUrl('event');
+            $url = $this->generateUrl('/');
 
             return $this->redirect($url);
         }
