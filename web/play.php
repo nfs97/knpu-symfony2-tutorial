@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Debug;
+use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
 /**
@@ -20,6 +21,7 @@ $kernel->terminate($request, $response);
 $container = $kernel->getContainer();
 
 use EventBundle\Entity\Event;
+
 
 $event = new Event();
 $event->setName('Darth\'s surprise bithday party');

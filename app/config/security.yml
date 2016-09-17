@@ -1,24 +1,32 @@
-# To get started with security, check out the documentation:
-# http://symfony.com/doc/current/book/security.html
 security:
+    encoders:
+            UserBundle\Entity\Users:
+                algorithm: bcrypt
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
     providers:
-        in_memory:
-            memory: ~
+        our_db_provider:
+                    entity:
+                        class: UserBundle:Users
+
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        main:
+        secured_area:
+            pattern:    ^/
+            form_login:
+                check_path: login_check
+                login_path: login_form
+            logout:
+                path:   logout #route to logout
+                target: event
             anonymous: ~
-            # activate different ways to authenticate
+            #http_basic:
+            #    realm: "Secured Demo Area"
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    access_control:
+    #putting security in the controller class instead!
+#        - { path: ^/new, roles: ROLE_ADMIN }
+#        - { path: ^/create, roles: ROLE_USER }

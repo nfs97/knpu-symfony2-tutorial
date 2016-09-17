@@ -1,0 +1,17 @@
+{# app/Resources/TwigBundle/views/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Chill dude, I denied access to you! 403 Error</h1>
+{% block stylesheets %}
+{% endblock %}
+    {# example security usage, see below #}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {# ... #}
+    {% endif %}
+
+    <p>
+        The requested page couldn't be located. Checkout for any URL
+        misspelling or <a href="{{ path('event') }}">return to the homepage</a>.
+    </p>
+{% endblock %}

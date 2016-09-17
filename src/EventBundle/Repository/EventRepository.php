@@ -1,6 +1,7 @@
 <?php
 
 namespace EventBundle\Repository;
+use Proxies\__CG__\UserBundle\Entity\Users;
 
 /**
  * EventRepository
@@ -10,4 +11,5 @@ namespace EventBundle\Repository;
  */
 class EventRepository extends \Doctrine\ORM\EntityRepository
 {
+    
 }
